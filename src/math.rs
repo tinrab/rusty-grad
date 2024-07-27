@@ -2,6 +2,8 @@ pub type Vector = nalgebra::OVector<f32, nalgebra::Dyn>;
 
 pub type Matrix = nalgebra::OMatrix<f32, nalgebra::Dyn, nalgebra::Dyn>;
 
+pub type Shape = (usize, usize);
+
 pub fn matrix_broadcast_dot(a: &Matrix, b: &Matrix) -> Matrix {
     let a_shape = a.shape();
     let b_shape = b.shape();
