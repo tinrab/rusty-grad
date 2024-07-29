@@ -10,8 +10,7 @@ impl SigmoidActivationFunction {
 
 impl PureActivationFunctionLike for SigmoidActivationFunction {
     fn forward(&self, input: &Matrix) -> Matrix {
-        let exp = (input * -1.0f32).exp();
-        exp.map(|x| 1.0 / (1.0 + x))
+        input.map(|x| 1.0 / (1.0 + (-x).exp()))
     }
 
     fn backward(&self, input: &Matrix) -> Matrix {

@@ -1,5 +1,5 @@
 use rusty_neuron::{
-    activation::tanh::TanhActivationFunction,
+    activation::sigmoid::SigmoidActivationFunction,
     initializer::{Initializer, UniformInitializer},
     layer::{activation::ActivationLayer, dense::DenseLayer},
     loss::{LossFunction, MseLossFunction},
@@ -24,32 +24,21 @@ fn main() -> Result<(), Box<dyn Error>> {
         Matrix::from_row_slice(1, 1, &[0.0]),
     ];
 
-    let initializer: Initializer = UniformInitializer::new_half_centered().into();
-    let mut optimizer: Optimizer = SgdOptimizer::new(0.1f32).into();
+    let initializer: Initializer = UniformInitializer::new_zero_one().into();
+    let mut optimizer: Optimizer = SgdOptimizer::new(0.01f32).into();
     let loss_function: LossFunction = MseLossFunction::new().into();
 
     let mut nn = Network::new(vec![
         DenseLayer::new(2, 3, &initializer).into(),
-        ActivationLayer::new(TanhActivationFunction::new()).into(),
+        ActivationLayer::new(SigmoidActivationFunction::new()).into(),
         DenseLayer::new(3, 1, &initializer).into(),
-        ActivationLayer::new(TanhActivationFunction::new()).into(),
+        ActivationLayer::new(SigmoidActivationFunction::new()).into(),
     ]);
 
     const EPOCHS: usize = 1000;
     for epoch in 0..EPOCHS {
-        let mut loss = 0.0;
-        for sample in 0..input.len() {
-            loss += nn.epoch(
-                epoch,
-                &loss_function,
-                &input[sample],
-                &target[sample],
-                &mut optimizer,
-            );
-        }
-
-        loss /= input.len() as f32;
-        if epoch % 100 == 0 || epoch == EPOCHS - 1 {
+        let loss = nn.epoch(epoch, &input, &target, &loss_function, &mut optimizer);
+        if epoch % 200 == 0 || epoch == EPOCHS - 1 {
             println!("Epoch: {}, Loss: {}", epoch, loss);
         }
     }

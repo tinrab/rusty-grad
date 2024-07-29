@@ -6,8 +6,10 @@ use crate::{
 };
 
 pub struct DenseLayer {
-    weights: Matrix,
-    biases: Matrix,
+    pub input_size: usize,
+    pub output_size: usize,
+    pub weights: Matrix,
+    pub biases: Matrix,
     input: Option<Matrix>,
 }
 
@@ -17,6 +19,8 @@ impl DenseLayer {
         let biases = initializer.initialize_matrix((output_size, 1));
 
         Self {
+            input_size,
+            output_size,
             weights,
             biases,
             input: None,

@@ -1,18 +1,11 @@
-use image::{GenericImageView, ImageReader};
-use nalgebra::{Dyn, RowVector3};
 use rusty_neuron::{
-    activation::{
-        softmax::SoftMaxActivationFunction, tanh::TanhActivationFunction, PureActivationFunction,
-        PureActivationFunctionLike,
-    },
+    activation::tanh::TanhActivationFunction,
     initializer::{Initializer, UniformInitializer},
-    layer::{
-        activation::ActivationLayer, dense::DenseLayer, reshape::ReshapeLayer, Layer, LayerLike,
-    },
-    loss::{LossFunction, LossFunctionLike, MseLossFunction},
+    layer::{activation::ActivationLayer, dense::DenseLayer},
+    loss::{LossFunction, MseLossFunction},
     math::Matrix,
     network::Network,
-    optimizer::{self, sgd::SgdOptimizer, Optimizer},
+    optimizer::{sgd::SgdOptimizer, Optimizer},
 };
 use std::{error::Error, fs::File, io::Read};
 
@@ -89,10 +82,10 @@ fn main() -> Result<(), Box<dyn Error>> {
         ActivationLayer::new(TanhActivationFunction::new()).into(),
     ]);
 
-    const EPOCHS: usize = 500;
+    const EPOCHS: usize = 10;
     for epoch in 0..EPOCHS {
         let loss = nn.epoch(epoch, &input, &target, &loss_function, &mut optimizer);
-        if epoch % 50 == 0 || epoch == EPOCHS - 1 {
+        if epoch % 3 == 0 || epoch == EPOCHS - 1 {
             println!("Epoch: {}, Loss: {}", epoch, loss);
         }
     }

@@ -1,4 +1,5 @@
 pub mod activation;
+pub mod cuda;
 pub mod initializer;
 pub mod layer;
 pub mod loss;
