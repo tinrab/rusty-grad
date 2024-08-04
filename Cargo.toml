@@ -1,10 +1,10 @@
 [package]
-name = "rusty_neuron"
+name = "rusty_grad"
 version = "0.0.0"
 edition = "2021"
 
 [lib]
-name = "rusty_neuron"
+name = "rusty_grad"
 src = "src/lib.rs"
 
 [dependencies]

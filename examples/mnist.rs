@@ -1,4 +1,4 @@
-use rusty_neuron::{
+use rusty_grad::{
     activation::tanh::TanhActivationFunction,
     initializer::{Initializer, UniformInitializer},
     layer::{activation::ActivationLayer, dense::DenseLayer},

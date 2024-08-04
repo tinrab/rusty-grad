@@ -1,6 +1,6 @@
 use image::{GenericImageView, ImageReader};
 use nalgebra::{Dyn, RowVector3};
-use rusty_neuron::{
+use rusty_grad::{
     activation::{
         sigmoid::SigmoidActivationFunction, softmax::SoftMaxActivationFunction,
         tanh::TanhActivationFunction, PureActivationFunction, PureActivationFunctionLike,
