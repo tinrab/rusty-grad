@@ -2,18 +2,14 @@
 
 #include <stdio.h>
 
-class Matrix
-{
+class Matrix {
   private:
     size_t _rows;
     size_t _columns;
     float* _data;
 
   public:
-    Matrix(size_t rows, size_t columns)
-      : _rows(rows)
-      , _columns(columns)
-    {
+    Matrix(size_t rows, size_t columns) : _rows(rows), _columns(columns) {
         this->_data = new float[rows * columns];
     }
 
@@ -35,8 +31,7 @@ class Matrix
     //     // }
     // }
 
-    Matrix& operator=(const Matrix& other)
-    {
+    Matrix& operator=(const Matrix& other) {
         printf("COPY ASSIGN\n");
         // printf("copy assign: (%d, %d)\n", this->_rows, this->_columns);
         if (this == &other) {
@@ -46,18 +41,27 @@ class Matrix
         return *this;
     }
 
-    float& operator()(size_t i, size_t j)
-    {
+    float& operator()(size_t i, size_t j) {
         return this->_data[i * this->_columns + j];
     }
 
-    float operator[](size_t i) const { return this->_data[i]; }
+    float operator[](size_t i) const {
+        return this->_data[i];
+    }
 
-    size_t rows() const { return this->_rows; }
+    size_t rows() const {
+        return this->_rows;
+    }
 
-    size_t columns() const { return this->_columns; }
+    size_t columns() const {
+        return this->_columns;
+    }
 
-    size_t size() const { return this->_rows * this->_columns; }
+    size_t size() const {
+        return this->_rows * this->_columns;
+    }
 
-    float* data() { return this->_data; }
+    float* data() {
+        return this->_data;
+    }
 };

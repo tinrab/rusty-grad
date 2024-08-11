@@ -5,7 +5,6 @@ use rusty_grad::{
         sigmoid::SigmoidActivationFunction, softmax::SoftMaxActivationFunction,
         tanh::TanhActivationFunction, PureActivationFunction, PureActivationFunctionLike,
     },
-    cuda::cuda_network_forward,
     initializer::{Initializer, UniformInitializer},
     layer::{
         activation::ActivationLayer, dense::DenseLayer, reshape::ReshapeLayer, Layer, LayerLike,
@@ -47,8 +46,8 @@ fn main() -> Result<(), Box<dyn Error>> {
     // }
     // println!("CPU: {:?}", now.elapsed());
 
-    let output = cuda_network_forward(network, input);
-    println!("{}", output);
+    // let output = cuda_network_forward(network, input);
+    // println!("{}", output);
 
     Ok(())
 }

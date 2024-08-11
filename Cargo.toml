@@ -9,9 +9,9 @@ src = "src/lib.rs"
 
 [dependencies]
 enum_dispatch = "0.3.13"
-nalgebra = { version = "0.33.0", features = ["rand"] }
-image = "0.25.2"
-clap = "4.5.9"
+nalgebra = { version = "0.33.2", features = ["rand"] }
+image = "0.25.5"
+clap = "4.5.32"
 
 [build-dependencies]
-cc = "1.1.6"
+cc = "1.2.16"

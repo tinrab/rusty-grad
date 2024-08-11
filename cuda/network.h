@@ -1,13 +1,25 @@
 #pragma once
 
-#include <memory>
+#include <vector>
 
-#include "layer/layer.h"
+#include "layer.h"
 #include "math.h"
 #include "vec.h"
 
-class Network
-{
+class Network {
+  private:
+    std::vector<Layer*> _layers;
+
   public:
-    Vec<Layer> layers;
+    ~Network() {
+        for (auto layer : _layers) {
+            delete layer;
+        }
+    }
+
+    void add_layer(Layer* layer) {
+        _layers.push_back(layer);
+    }
+
+    Tensor forward(const Tensor& input);
 };

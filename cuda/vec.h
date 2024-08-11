@@ -3,14 +3,17 @@
 #include <memory>
 
 template<typename T>
-class Vec
-{
+class Vec {
   private:
     size_t _len;
     T* _data;
 
   public:
-    T& operator[](size_t i) { return this->_data[i]; }
+    T& operator[](size_t i) {
+        return this->_data[i];
+    }
 
-    size_t size() const { return this->_len; }
+    size_t size() const {
+        return this->_len;
+    }
 };

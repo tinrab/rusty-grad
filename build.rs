@@ -6,7 +6,7 @@ use std::{
 };
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let source_files = &["cuda/layer/layer.cu", "cuda/layer/dense.cu", "cuda/lib.cu"];
+    let source_files = &["cuda/layer.cu", "cuda/network.cu", "cuda/lib.cu"];
     cc::Build::new()
         .cuda(true)
         .flag("-cudart=shared")
